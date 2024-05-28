@@ -1,0 +1,4 @@
+repository "oyan_batyr_DIPLOMA@kazbektytinbai@cloud"
+  path "/"
+    br "/main"
+    co "/main"
