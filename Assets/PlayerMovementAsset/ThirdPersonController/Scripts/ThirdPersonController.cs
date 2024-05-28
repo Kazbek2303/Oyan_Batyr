@@ -122,9 +122,11 @@ namespace StarterAssets
             }
         }
 
-
+        private Fighter figther;
         private void Awake()
         {
+            figther = GetComponent<Fighter>();
+
             // get a reference to our main camera
             if (_mainCamera == null)
             {
@@ -213,6 +215,9 @@ namespace StarterAssets
 
         private void Move()
         {
+            if (figther.isAttacking)
+                return;
+
             // set target speed based on move speed, sprint speed and if sprint is pressed
             float targetSpeed = _input.sprint ? SprintSpeed : MoveSpeed;
 
