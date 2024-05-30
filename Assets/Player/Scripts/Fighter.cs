@@ -13,29 +13,35 @@ public class Fighter : MonoBehaviour
 
     public bool isAttacking;
 
+    public PauseMenu pauseMenu;
+
     private void Start()
     {
         anim = GetComponent<Animator>();
     }
     void Update()
     {
-        ExitAttack();
-        //Attack();
-
-        if (Time.time - lastClickedTime > maxComboDelay)
+       if(!PauseMenu.isPaused)
         {
-            noOfClicks = 0;
-        }
+            ExitAttack();
+            //Attack();
 
-        //cooldown time
-        if (Time.time > nextFireTime)
-        {
-            // Check for mouse input
-            if (Input.GetMouseButtonDown(0) && anim.GetBool("Grounded"))
+            if (Time.time - lastClickedTime > maxComboDelay)
             {
-                OnClick();
+                noOfClicks = 0;
+            }
+
+            //cooldown time
+            if (Time.time > nextFireTime)
+            {
+                // Check for mouse input
+                if (Input.GetMouseButtonDown(0) && anim.GetBool("Grounded"))
+                {
+                    OnClick();
+                }
             }
         }
+        
     }
     void ExitAttack()
     {
