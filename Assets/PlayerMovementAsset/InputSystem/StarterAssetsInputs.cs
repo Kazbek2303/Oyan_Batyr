@@ -6,8 +6,9 @@ using UnityEngine.InputSystem;
 namespace StarterAssets
 {
 	public class StarterAssetsInputs : MonoBehaviour
-	{
-		[SerializeField] Fighter fighter;
+    {
+        [SerializeField] Fighter fighter;
+		public PauseMenu pauseMenu;
 
 		[Header("Character Input Values")]
 		public Vector2 move;
@@ -25,12 +26,20 @@ namespace StarterAssets
 #if ENABLE_INPUT_SYSTEM
 		public void OnMove(InputValue value)
 		{
-			MoveInput(value.Get<Vector2>());
+			if (!PauseMenu.isPaused)
+			{
+				MoveInput(value.Get<Vector2>());
+			}
 		}
 
 		public void OnLook(InputValue value)
 		{
-			if(cursorInputForLook)
+			/*if(cursorInputForLook)
+			{
+				LookInput(value.Get<Vector2>());
+			}*/
+
+			if (!PauseMenu.isPaused && cursorInputForLook)
 			{
 				LookInput(value.Get<Vector2>());
 			}
@@ -38,15 +47,21 @@ namespace StarterAssets
 
 		public void OnJump(InputValue value)
 		{
-			if (!fighter.isAttacking)
-			{
-				JumpInput(value.isPressed);
+			if (!PauseMenu.isPaused)
+            {
+				if (!fighter.isAttacking)
+				{
+					JumpInput(value.isPressed);
+				}
 			}
 		}
 
 		public void OnSprint(InputValue value)
 		{
-			SprintInput(value.isPressed);
+			if (!PauseMenu.isPaused)
+			{
+				SprintInput(value.isPressed);
+			}
 		}
 #endif
 
@@ -73,12 +88,16 @@ namespace StarterAssets
 
 		private void OnApplicationFocus(bool hasFocus)
 		{
-			SetCursorState(cursorLocked);
+			if (!PauseMenu.isPaused)
+			{
+				SetCursorState(cursorLocked);
+			}
 		}
 
 		private void SetCursorState(bool newState)
 		{
 			Cursor.lockState = newState ? CursorLockMode.Locked : CursorLockMode.None;
+			
 		}
 	}
 	
