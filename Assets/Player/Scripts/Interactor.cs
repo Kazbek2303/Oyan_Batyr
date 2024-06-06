@@ -15,7 +15,11 @@ public class Interactor : MonoBehaviour
 
     // Create a list to store interactable objects
     private List<IInteractable> inventory = new List<IInteractable>();
-
+    void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, InteractRange);
+    }
 
     void Update()
     {
