@@ -50,5 +50,15 @@ public class InventoryManager : MonoBehaviour
         InventoryItem existingItem = inventory.FirstOrDefault(item => item.itemName == itemName);
         return existingItem != null && existingItem.quantity > 0;
     }
-
+    public bool HasAllItems(List<string> itemNames)
+    {
+        foreach (var itemName in itemNames)
+        {
+            if (!HasItem(itemName))
+            {
+                return false;
+            }
+        }
+        return true;
+    }
 }
