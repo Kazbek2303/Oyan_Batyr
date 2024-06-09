@@ -12,6 +12,9 @@ public class EnemyAI : MonoBehaviour
     private Animator animator;
     private NavMeshAgent agent;
 
+    public AudioSource flySound;
+    public AudioSource walkSound;
+
     void Start()
     {
         animator = GetComponent<Animator>();
@@ -30,6 +33,7 @@ public class EnemyAI : MonoBehaviour
                 agent.isStopped = false;
                 agent.SetDestination(player.position);
                 animator.SetBool("isWalking", true);
+                //walkSound.Play();
                 animator.SetBool("isFlying", false);
             }
             else
@@ -38,6 +42,7 @@ public class EnemyAI : MonoBehaviour
                 animator.SetBool("isWalking", false);
                 animator.SetBool("isFlying", true);
                 FlyUp();
+                //flySound.Play();
             }
         }
         else

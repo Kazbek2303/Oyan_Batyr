@@ -8,6 +8,8 @@ public class EnemyHealth : MonoBehaviour
     Animator anim;
     NavMeshAgent agent;
     EnemyController enemyController;
+    Rigidbody rb;
+    EnemyAI enemyai;
 
     public bool isDead = false;
 
@@ -33,6 +35,8 @@ public class EnemyHealth : MonoBehaviour
         anim = GetComponentInChildren<Animator>();
         agent = GetComponentInChildren<NavMeshAgent>();
         enemyController = GetComponentInChildren<EnemyController>();
+        rb = GetComponent<Rigidbody>();
+        enemyai = GetComponent<EnemyAI>();
     }
 
     void Die()
@@ -42,6 +46,11 @@ public class EnemyHealth : MonoBehaviour
         if (agent != null)
         {
             agent.enabled = false;
+        }
+
+        if (agent != null)
+        {
+            enemyai.enabled = false;
         }
 
         if (enemyController != null)
@@ -55,11 +64,16 @@ public class EnemyHealth : MonoBehaviour
             anim.SetTrigger("isDead");
         }
 
+        if (rb != null)
+        {
+            rb.isKinematic = true;
+            rb.detectCollisions = false;
+        }
         // Optionally, disable the collider to prevent further interactions
-        Collider mainCollider = GetComponent<Collider>();
+        /*Collider mainCollider = GetComponent<Collider>();
         if (mainCollider != null)
         {
             mainCollider.enabled = false;
-        }
+        }*/
     }
 }

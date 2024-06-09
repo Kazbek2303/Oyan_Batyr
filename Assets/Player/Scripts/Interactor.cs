@@ -17,6 +17,7 @@ public class Interactor : MonoBehaviour
     Collider[] colliders;
     [SerializeField] Image eButton;
     Animator anim;
+    [SerializeField] private AudioSource pickUp;
 
     private List<IInteractable> inventory = new List<IInteractable>();
     private Coroutine fadeCoroutine;
@@ -68,6 +69,7 @@ public class Interactor : MonoBehaviour
                 if (IsClose(collider) &&  !inventory.Contains(interactObj))
                 {
                     anim.SetTrigger("pickup");
+                    pickUp.Play();
                     interactObj.Interact();  
                     inventory.Add(interactObj);
                 }
