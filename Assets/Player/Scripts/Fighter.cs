@@ -14,9 +14,14 @@ public class Fighter : MonoBehaviour
     public bool isAttacking;
 
     public PauseMenu pauseMenu;
+    [SerializeField]
+    private GameObject swordPrefab;
+    public AudioClip[] SlashAudioClips;
+    [Range(0, 1)] public float SlashAudioVolume = 0.5f;
 
     private void Start()
     {
+        swordPrefab.GetComponent<Collider>().enabled = false;
         anim = GetComponent<Animator>();
     }
     void Update()
@@ -99,8 +104,29 @@ public class Fighter : MonoBehaviour
         noOfClicks = Mathf.Clamp(noOfClicks, 0, 1); // 3
     }
 
+    public void AttackStart()
+    {
+        swordPrefab.GetComponent<Collider>().enabled = true;
+    }
+    public void AttackEnd()
+    {
+        swordPrefab.GetComponent<Collider>().enabled = false;
+    }
+
     public void ResetAttack()
     {
         isAttacking = false;
+    }
+
+    private void SwordSlash(AnimationEvent animationEvent)
+    {
+        if (animationEvent.animatorClipInfo.weight > 0.5f)
+        {
+            if (SlashAudioClips.Length > 0)
+            {
+                var index = Random.Range(0, SlashAudioClips.Length);
+                AudioSource.PlayClipAtPoint(SlashAudioClips[index], transform.position, SlashAudioVolume);
+            }
+        }
     }
 }

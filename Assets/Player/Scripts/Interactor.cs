@@ -16,6 +16,7 @@ public class Interactor : MonoBehaviour
 
     Collider[] colliders;
     [SerializeField] Image eButton;
+    Animator anim;
 
     private List<IInteractable> inventory = new List<IInteractable>();
     private Coroutine fadeCoroutine;
@@ -29,6 +30,7 @@ public class Interactor : MonoBehaviour
 
     void Start()
     {
+        anim = GetComponent<Animator>();
         SetButtonAlpha(0f);
     }
 
@@ -52,7 +54,6 @@ public class Interactor : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.E))
         {
-         
             CheckInteracte();
         }
     }
@@ -66,7 +67,7 @@ public class Interactor : MonoBehaviour
             {
                 if (IsClose(collider) &&  !inventory.Contains(interactObj))
                 {
-                    
+                    anim.SetTrigger("pickup");
                     interactObj.Interact();  
                     inventory.Add(interactObj);
                 }

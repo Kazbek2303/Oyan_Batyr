@@ -9,36 +9,35 @@ public class EnemyHealth : MonoBehaviour
     NavMeshAgent agent;
     EnemyController enemyController;
 
-    int health = 4;
-    bool isDead = false;
+    public bool isDead = false;
 
-    private void Start()
+    [SerializeField] float health, maxHealth = 3f;
+    [SerializeField] public AudioSource GetHit;
+    [SerializeField] public AudioSource Died;
+    public void TakeDamage(float damageAmount)
     {
-        anim = GetComponent<Animator>();
-        agent = GetComponent<NavMeshAgent>();
-        enemyController = GetComponent<EnemyController>();
-    }
+        health -= damageAmount;
+        GetHit.Play();
+        anim.SetTrigger("Hit");
 
-    void Update()
-    {
-        if (health < 1 && !isDead)
+        if (health <= 0 && !isDead)
         {
             isDead = true;
             Die();
         }
     }
 
-    void OnTriggerEnter(Collider other)
+    private void Start()
     {
-        if (other.CompareTag("Batyr"))
-        {
-            health -= 1;
-            Debug.Log(health);
-        }
+        health = maxHealth;
+        anim = GetComponentInChildren<Animator>();
+        agent = GetComponentInChildren<NavMeshAgent>();
+        enemyController = GetComponentInChildren<EnemyController>();
     }
 
     void Die()
     {
+        Died.Play();
         // Disable the enemy controller and navigation
         if (agent != null)
         {
@@ -53,7 +52,7 @@ public class EnemyHealth : MonoBehaviour
         // Play the death animation
         if (anim != null)
         {
-            anim.SetBool("IsDead", true);
+            anim.SetTrigger("isDead");
         }
 
         // Optionally, disable the collider to prevent further interactions
