@@ -3,7 +3,57 @@ guid: 5a6e48232827fa34da7aadad5a56c13f
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Body_face.001
+    second: {fileID: 2100000, guid: 4c29bfdf58bb8524b9e3b6d3254d9690, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Eyeball.001
+    second: {fileID: 2100000, guid: c5828777dfa5c7b498d6bf6871eeac5d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: beard.001
+    second: {fileID: 2100000, guid: 37e5e263d2319cf41a0cc2d10d63c6d5, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: body.001
+    second: {fileID: 2100000, guid: c5aa2e4c6c7e5684c8748fb9d6c39733, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: cloth_Shirt.001
+    second: {fileID: 2100000, guid: 6eaab923a2cb7d944b47f87206b2c1a9, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: cloth_jacket.001
+    second: {fileID: 2100000, guid: 7f31c67d75c99ef49861639e0effbdda, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: cloth_pants.001
+    second: {fileID: 2100000, guid: 05e2baa5c8085ac4cb16a3da4a0b2113, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: eyelash.001
+    second: {fileID: 2100000, guid: 9ef8c9b78a55ceb49b08e9583dc14ac7, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: shoes.001
+    second: {fileID: 2100000, guid: 90b572b6cde132241b860edf5a184606, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: teeth.001
+    second: {fileID: 2100000, guid: 6f3269d3cf27207419b9f8a37aa00b17, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -16,7 +66,8 @@ ModelImporter:
     optimizeGameObjects: 0
     removeConstantScaleCurves: 0
     motionNodeName: 
-    rigImportErrors: 
+    rigImportErrors: "Copied Avatar Rig Configuration mis-match. Transform hierarchy
+      does not match:\n\tCannot find root motion transform 'Armature.002'.\n"
     rigImportWarnings: 
     animationImportErrors: 
     animationImportWarnings: 
@@ -91,7 +142,7 @@ ModelImporter:
     legStretch: 0.05
     feetSpacing: 0
     globalScale: 1
-    rootMotionBoneName: 
+    rootMotionBoneName: Armature
     hasTranslationDoF: 0
     hasExtraRoot: 0
     skeletonHasParents: 1
@@ -99,7 +150,7 @@ ModelImporter:
   autoGenerateAvatarMappingIfUnspecified: 1
   animationType: 2
   humanoidOversampling: 1
-  avatarSetup: 0
+  avatarSetup: 1
   addHumanoidExtraRootOnlyWhenUsingAvatar: 1
   importBlendShapeDeformPercent: 1
   remapMaterialsIfMaterialImportModeIsNone: 0

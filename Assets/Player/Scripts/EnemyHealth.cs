@@ -16,6 +16,7 @@ public class EnemyHealth : MonoBehaviour
     [SerializeField] float health, maxHealth = 3f;
     [SerializeField] public AudioSource GetHit;
     [SerializeField] public AudioSource Died;
+   
     public void TakeDamage(float damageAmount)
     {
         health -= damageAmount;
@@ -48,7 +49,7 @@ public class EnemyHealth : MonoBehaviour
             agent.enabled = false;
         }
 
-        if (agent != null)
+        if (enemyai != null)
         {
             enemyai.enabled = false;
         }

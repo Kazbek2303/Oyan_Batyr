@@ -3,7 +3,57 @@ guid: f77a8e231b6ae264fb81f2ef2b21e213
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Body_face.001
+    second: {fileID: 2100000, guid: 70857596183692a46a9f5109aa206f56, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Eyeball.001
+    second: {fileID: 2100000, guid: 8e0f2d73beb471143889b2e6d5963a46, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: beard.001
+    second: {fileID: 2100000, guid: 37e5e263d2319cf41a0cc2d10d63c6d5, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: body.001
+    second: {fileID: 2100000, guid: c56cbf35888cf0c4394454390780d742, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: cloth_Shirt.001
+    second: {fileID: 2100000, guid: 6eaab923a2cb7d944b47f87206b2c1a9, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: cloth_jacket.001
+    second: {fileID: 2100000, guid: 7f31c67d75c99ef49861639e0effbdda, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: cloth_pants.001
+    second: {fileID: 2100000, guid: a7c01e31d1b30bd42b91170579edf44a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: eyelash.001
+    second: {fileID: 2100000, guid: 9ef8c9b78a55ceb49b08e9583dc14ac7, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: shoes.001
+    second: {fileID: 2100000, guid: 90b572b6cde132241b860edf5a184606, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: teeth.001
+    second: {fileID: 2100000, guid: 08ca666a936b4524dbda3a90ce3a393a, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -95,11 +145,11 @@ ModelImporter:
     hasTranslationDoF: 0
     hasExtraRoot: 0
     skeletonHasParents: 1
-  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  lastHumanDescriptionAvatarSource: {fileID: 9000000, guid: 4fdb276d5f2691146a04bf4327c03c18, type: 3}
   autoGenerateAvatarMappingIfUnspecified: 1
   animationType: 2
   humanoidOversampling: 1
-  avatarSetup: 0
+  avatarSetup: 2
   addHumanoidExtraRootOnlyWhenUsingAvatar: 1
   importBlendShapeDeformPercent: 1
   remapMaterialsIfMaterialImportModeIsNone: 0

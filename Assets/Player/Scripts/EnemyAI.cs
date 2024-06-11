@@ -1,4 +1,5 @@
 
+using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -15,16 +16,31 @@ public class EnemyAI : MonoBehaviour
     public AudioSource flySound;
     public AudioSource walkSound;
 
+    private BoxCollider boxCollider;
+    private Vector3 originalColliderCenter;
+    public float goUpDistance = 10f;
+
+    public GameObject attackPrefab; // The attack prefab with a box collider
+    public Transform attackSpawnPoint; // The point where the attack prefab will be instantiated
+    public float attackCooldown = 5f; // Cooldown between attacks
+    private bool canAttack = true;
+
     void Start()
     {
         animator = GetComponent<Animator>();
         agent = GetComponent<NavMeshAgent>();
+        boxCollider = GetComponent<BoxCollider>();
+        if (boxCollider != null)
+        {
+            originalColliderCenter = boxCollider.center;
+        }
         //player = GameObject.FindGameObjectWithTag(playerTag).transform;
     }
 
     void Update()
     {
         float distanceToPlayer = Vector3.Distance(transform.position, player.position);
+        Debug.Log(distanceToPlayer);
 
         if (distanceToPlayer <= detectionRadius)
         {
@@ -35,14 +51,22 @@ public class EnemyAI : MonoBehaviour
                 animator.SetBool("isWalking", true);
                 //walkSound.Play();
                 animator.SetBool("isFlying", false);
+                ResetColliderPosition();
             }
             else
             {
+                agent.SetDestination(player.position);
                 agent.isStopped = true;
                 animator.SetBool("isWalking", false);
                 animator.SetBool("isFlying", true);
                 FlyUp();
                 //flySound.Play();
+                MoveColliderUp();
+
+                if (canAttack)
+                {
+                    StartCoroutine(Attack());
+                }
             }
         }
         else
@@ -50,6 +74,7 @@ public class EnemyAI : MonoBehaviour
             agent.isStopped = true;
             animator.SetBool("isWalking", false);
             animator.SetBool("isFlying", false);
+            ResetColliderPosition();
         }
     }
 
@@ -64,5 +89,28 @@ public class EnemyAI : MonoBehaviour
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, detectionRadius);
     }
+    private void MoveColliderUp()
+    {
+        if (boxCollider != null)
+        {
+            Vector3 newCenter = originalColliderCenter + new Vector3(0, goUpDistance, 0);
+            boxCollider.center = newCenter;
+        }
+    }
 
+    private void ResetColliderPosition()
+    {
+        if (boxCollider != null)
+        {
+            boxCollider.center = originalColliderCenter;
+        }
+    }
+
+    private IEnumerator Attack()
+    {
+        canAttack = false;
+        Instantiate(attackPrefab, attackSpawnPoint.position, attackSpawnPoint.rotation);
+        yield return new WaitForSeconds(attackCooldown);
+        canAttack = true;
+    }
 }

@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 [System.Serializable]
 public class InventoryItem
@@ -27,6 +28,7 @@ public class InventoryItem
 public class InventoryManager : MonoBehaviour
 {
     public HashSet<InventoryItem> inventory = new HashSet<InventoryItem>();
+    public int itemsAddedCount = 0;
 
     public void AddItem(string itemName)
     {
@@ -41,7 +43,13 @@ public class InventoryManager : MonoBehaviour
         {
             InventoryItem newItem = new InventoryItem { itemName = itemName, quantity = 1 };
             inventory.Add(newItem);
+            itemsAddedCount++;
             Debug.Log("Added new item: " + itemName);
+
+            if (itemsAddedCount == 3)
+            {
+                //LoadNewScene();
+            }
         }
     }
 
@@ -60,5 +68,9 @@ public class InventoryManager : MonoBehaviour
             }
         }
         return true;
+    }
+    public void LoadNewScene()
+    {
+        SceneManager.LoadScene("SwordAnim");
     }
 }

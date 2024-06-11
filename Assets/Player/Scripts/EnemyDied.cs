@@ -5,8 +5,8 @@ using UnityEngine;
 public class EnemyDied : MonoBehaviour
 {
     private EnemyHealth enemy;
-    public float flyUpSpeed = 2f;  // Speed at which the enemy flies up
-    public float flyUpDuration = 5f;  // Duration of the fly up effect
+    public float flyUpSpeed = 2f;  
+    public float flyUpDuration = 20f;
 
     private void Start()
     {

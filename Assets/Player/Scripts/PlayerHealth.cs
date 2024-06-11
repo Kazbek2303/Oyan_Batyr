@@ -9,12 +9,13 @@ public class PlayerHealth : MonoBehaviour
     Animator anim;
     NavMeshAgent agent;
     ThirdPersonController person;
+    CharacterController characterController;
     [SerializeField] Animator enemyAnim;
     [SerializeField] private AudioSource GetHit;
 
     bool isDead = false;
 
-    [SerializeField] float health, maxHealth = 3f;
+    [SerializeField] public float health, maxHealth = 3f;
     public void TakeDamage(float damageAmount)
     {
         health -= damageAmount;
@@ -45,6 +46,11 @@ public class PlayerHealth : MonoBehaviour
             agent.enabled = false;
         }
 
+        if (characterController != null)
+        {
+            characterController.enabled = false;
+        }
+
         if (person != null)
         {
             person.enabled = false;
@@ -54,6 +60,7 @@ public class PlayerHealth : MonoBehaviour
         if (anim != null)
         {
             anim.SetTrigger("isDead");
+            //enemyAnim.SetTrigger("killed");
         }
         
         //enemyAnim.SetTrigger("killed");
@@ -72,8 +79,8 @@ public class PlayerHealth : MonoBehaviour
 
     private IEnumerator Celebrate()
     {
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0f);
 
-        enemyAnim.SetTrigger("killed");
+        if (enemyAnim != null) enemyAnim.SetTrigger("killed");
     }
 }

@@ -92,10 +92,13 @@ namespace SlimUI.ModernMenu{
 
 			// check tool tip value
 			if(PlayerPrefs.GetInt("ToolTips")==0){
-				tooltipstext.GetComponent<TMP_Text>().text = "off";
+				tooltipstext.GetComponent<TMP_Text>().text = "kazakh";
 			}
-			else{
-				tooltipstext.GetComponent<TMP_Text>().text = "on";
+			else if (PlayerPrefs.GetInt("ToolTips") == 1){
+				tooltipstext.GetComponent<TMP_Text>().text = "russian";
+			}
+			else {
+				tooltipstext.GetComponent<TMP_Text>().text = "english";
 			}
 
 			// check shadow distance/enabled
@@ -274,11 +277,16 @@ namespace SlimUI.ModernMenu{
 		public void ToolTips (){
 			if(PlayerPrefs.GetInt("ToolTips")==0){
 				PlayerPrefs.SetInt("ToolTips",1);
-				tooltipstext.GetComponent<TMP_Text>().text = "on";
+				tooltipstext.GetComponent<TMP_Text>().text = "russian";
 			}
 			else if(PlayerPrefs.GetInt("ToolTips")==1){
-				PlayerPrefs.SetInt("ToolTips",0);
-				tooltipstext.GetComponent<TMP_Text>().text = "off";
+				PlayerPrefs.SetInt("ToolTips",2);
+				tooltipstext.GetComponent<TMP_Text>().text = "kazakh";
+			}
+			else if (PlayerPrefs.GetInt("ToolTips") == 2)
+			{
+				PlayerPrefs.SetInt("ToolTips", 0);
+				tooltipstext.GetComponent<TMP_Text>().text = "english";
 			}
 		}
 

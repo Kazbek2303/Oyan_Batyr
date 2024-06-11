@@ -12,6 +12,7 @@ public class EnemyController : MonoBehaviour
 	public float lookSpeed = 50f;
 	bool isAttacking = false;
 	public float waitForMoving = 2f;
+	public bool isCelebrate = true;
 
 	[SerializeField]
 	private GameObject Player;
@@ -22,6 +23,7 @@ public class EnemyController : MonoBehaviour
 	[SerializeField]
 	private GameObject enemySword;
 	EnemyHealth enemyHealth;
+	[SerializeField] private PlayerHealth playerHealth;
 
 	public AudioClip[] FootstepAudioClips;
 	public AudioClip[] SlashAudioClips;
@@ -88,6 +90,14 @@ public class EnemyController : MonoBehaviour
 
 		// Wait for the attack animation to finish (you can adjust this duration)
 		yield return new WaitForSeconds(waitForMoving);
+		if (playerHealth.health < 1 && isCelebrate)
+		{
+			isCelebrate = false;
+			//isAttacking = false;
+			//anim.SetBool("IsWalking", false);
+			//anim.ResetTrigger("Attack");
+			anim.SetTrigger("killed");
+		}
 
 		if (!enemyHealth.isDead)
         {

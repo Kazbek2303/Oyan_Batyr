@@ -17,7 +17,7 @@ public class DeathScreenControlle : MonoBehaviour
         SetAlpha(deathText, 0);
     }
 
-    public void ShowDeathScreen()
+    private void ShowDeathScreen()
     {
         StartCoroutine(FadeIn());
     }
